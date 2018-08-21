@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Card } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 const QUERY = gql`
   query item($itemId: String) {
@@ -21,7 +22,8 @@ class Item extends React.Component {
         itemId: PropTypes.string
       })
     }),
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    classes: PropTypes.object.isRequired
   };
   static defaultProps = {
     match: {
@@ -46,7 +48,7 @@ class Item extends React.Component {
     } else return {};
   };
   render() {
-    const { onClick } = this.props;
+    const { onClick, classes } = this.props;
     return (
       <div>
         <Query
@@ -60,7 +62,7 @@ class Item extends React.Component {
             const { name, itemId } = this.getItemIdAndName(data.item);
             return (
               <div>
-                <Card onClick={onClick}>
+                <Card className={classes.card} onClick={onClick}>
                   name: {name} <br />
                   itemId: {itemId}
                   <br />
@@ -73,4 +75,10 @@ class Item extends React.Component {
     );
   }
 }
-export default Item;
+const styles = {
+  card: {
+    width: 200,
+    margin: 20
+  }
+};
+export default withStyles(styles)(Item);
