@@ -48,6 +48,11 @@
           "libraryName": "@material-ui/icons",
           "libraryDirectory": "",
           "camel2DashComponentName": false
+        },
+        {
+          "libraryName": "react-apollo",
+          "libraryDirectory": "",
+          "camel2DashComponentName": false
         }
       ]
     ]
